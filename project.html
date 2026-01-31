@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To‑Do App</title>
+<style>
+    h2{
+        margin: 1px;
+        color:rgb(137, 10, 10);
+        text-align: center;
+        text-shadow:1px 3px 5px rgb(33, 108, 158);
+        text-decoration: dotted;
+        font-size:50px;
+        
+    }
+    body{
+        text-align: center;
+
+    }
+    div{
+   width: 1000px;
+   height:200px;
+   background-color:rgb(243, 14, 239);
+   margin-left:90px ;
+   border-radius:10px;
+   box-shadow:5px 4px 6px aqua;
+    }
+    div:hover{
+        background-color: aqua;
+    }
+    button{
+        margin: auto;
+       
+    }
+    ul{
+        text-transform: capitalize;
+        color: darkred;
+        font-size: larger;
+    }
+</style>
+</head>
+<body>
+    <div>
+<h2><u>To‑Do List</u></h2>
+<br>
+<input id="task" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+<ul id="list"></ul>
+    </div>
+
+<script>
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+
+function showTasks() {
+list.innerHTML = "";
+tasks.forEach((t, i) => {
+list.innerHTML += `<li>${t} <button onclick="del(${i})">X</button></li>`;
+});
+}
+
+
+function addTask() {
+tasks.push(task.value);
+localStorage.setItem("tasks", JSON.stringify(tasks));
+task.value = "";
+showTasks();
+}
+
+
+function del(i) {
+tasks.splice(i,1);
+localStorage.setItem("tasks", JSON.stringify(tasks));
+showTasks();
+}
+
+
+showTasks();
+</script>
+</body>
+</html>
